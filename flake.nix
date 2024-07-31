@@ -54,21 +54,21 @@
           nativeBuildInputs = buildDeps;
           buildInputs = runtimeDeps;
 
-          postInstall = ''
-            wrapProgram $out/bin/${pname} \
-              --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath runtimeDeps} \
-              --prefix XCURSOR_THEME : "Adwaita"
-            mkdir -p $out/bin/assets
-            cp -a assets $out/bin
-          '';
+          # postInstall = ''
+          # wrapProgram $out/bin/${pname} \
+          #   --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath runtimeDeps} \
+          #   --prefix XCURSOR_THEME : "Adwaita"
+          # mkdir -p $out/bin/assets
+          # cp -a assets $out/bin
+          # '';
         };
       in
       {
         checks = {
-          # inherit my-crate;
+          inherit my-crate;
         };
 
-        # packages.default = my-crate;
+        packages.default = my-crate;
 
         devShells.default = craneLib.devShell {
           checks = self.checks.${system};
