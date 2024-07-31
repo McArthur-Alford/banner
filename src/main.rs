@@ -126,7 +126,7 @@ fn main() {
     }
 
     // Overlay figlet text with stretched background
-    let standard_font = FIGfont::from_file("./font.flf").unwrap();
+    let standard_font = FIGfont::from_content(include_str!("../font.flf")).unwrap();
     let figure = standard_font.convert(&args.text).unwrap();
     let string = figure.to_string();
     let figlet_lines: Vec<&str> = string.lines().collect();
